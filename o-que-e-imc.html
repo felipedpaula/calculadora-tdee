@@ -12,9 +12,9 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white mb-3 border">
             <div class="container">
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" href="/calculadora-tdee">
                     <h1>Calculadora TDEE</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,29 +23,103 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Início</a>
+                            <a class="nav-link active" aria-current="page" href="/calculadora-tdee">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/o-que-e-tdee.html">O que é TDEE</a>
+                            <a class="nav-link" href="/calculadora-tdee/o-que-e-tdee.html">O que é TDEE</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/o-que-e-imc.html">O que é IMC</a>
+                            <a class="nav-link" href="/calculadora-tdee/o-que-e-imc.html">O que é IMC</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="/calculadora-tdee/sobre.html">Sobre</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/sobre.html">Sobre</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/contato.html">Contato</a>
-                        </li>
+                            <a class="nav-link" href="/calculadora-tdee/contato.html">Contato</a>
+                        </li> -->
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
     
-    <div class="container py-4"> 
-        
+    <div class="container py-4 bg-white rounded border"> 
+        <h1>Índice de Massa Corporal (IMC)</h1>
+
+        <h2 class="mt-4">O que é o IMC?</h2>
+        <p>
+            O Índice de Massa Corporal (IMC) é uma medida simples usada para classificar a condição de peso de um indivíduo, levando em consideração sua altura e peso. Ele é amplamente utilizado por profissionais de saúde como um indicador básico do estado nutricional e para identificar possíveis riscos à saúde associados ao sobrepeso ou à obesidade.
+        </p>
+
+        <h2 class="mt-4">Como é calculado?</h2>
+        <p>
+            O IMC é calculado dividindo o peso da pessoa (em quilogramas) pela sua altura (em metros) elevada ao quadrado. A fórmula é:
+        </p>
+        <pre><code>IMC = peso (kg) / altura (m)^2</code></pre>
+        <p>
+            Por exemplo, uma pessoa com 70 kg e 1,75 m de altura teria um IMC de:
+        </p>
+        <pre><code>IMC = 70 / 1,75^2 = 22,86</code></pre>
+
+        <h2 class="mt-4">Categorias de IMC</h2>
+        <p>
+            As categorias de IMC foram estabelecidas pela Organização Mundial da Saúde (OMS) para classificar os diferentes níveis de condição corporal:
+        </p>
+        <ul>
+            <li><strong>Abaixo do peso:</strong> IMC inferior a 18,5</li>
+            <li><strong>Peso normal:</strong> IMC entre 18,5 e 24,9</li>
+            <li><strong>Sobrepeso:</strong> IMC entre 25 e 29,9</li>
+            <li><strong>Obesidade Grau 1:</strong> IMC entre 30 e 34,9</li>
+            <li><strong>Obesidade Grau 2:</strong> IMC entre 35 e 39,9</li>
+            <li><strong>Obesidade Grau 3 (Obesidade Mórbida):</strong> IMC superior a 40</li>
+        </ul>
+        <p>
+            Essas classificações oferecem uma visão geral do estado de peso, mas é importante lembrar que o IMC é uma medida simplista e não leva em consideração outros fatores como composição corporal, distribuição de gordura e fatores genéticos.
+        </p>
+
+        <h2 class="mt-4">Limitações do IMC</h2>
+        <p>
+            Embora o IMC seja uma ferramenta útil para medir o risco de problemas de saúde relacionados ao peso, ele apresenta algumas limitações:
+        </p>
+        <ul>
+            <li><strong>Composição Corporal:</strong> O IMC não distingue entre massa muscular e massa de gordura. Pessoas com alta massa muscular podem ter um IMC elevado, mas não necessariamente apresentam excesso de gordura corporal.</li>
+            <li><strong>Distribuição de Gordura:</strong> O IMC não indica a distribuição da gordura corporal, um fator crítico no risco de doenças cardiovasculares e metabólicas. Pessoas com gordura abdominal excessiva estão em maior risco, mesmo com um IMC normal.</li>
+            <li><strong>Fatores Genéticos e Étnicos:</strong> O IMC não leva em consideração diferenças étnicas ou genéticas que podem influenciar a composição corporal e o risco de saúde associado.</li>
+        </ul>
+
+        <h2 class="mt-4">Usos do IMC</h2>
+        <p>
+            Apesar de suas limitações, o IMC continua sendo amplamente utilizado por sua simplicidade e acessibilidade. Ele é útil para:
+        </p>
+        <ul>
+            <li><strong>Triagem Populacional:</strong> Permite identificar grupos de pessoas com alto risco de obesidade e desnutrição em grandes populações.</li>
+            <li><strong>Avaliação Inicial:</strong> Fornece um ponto de partida rápido para avaliar a condição de peso de um paciente.</li>
+            <li><strong>Pesquisa Clínica:</strong> É frequentemente usado como um parâmetro padrão em estudos que examinam as relações entre peso corporal e saúde.</li>
+        </ul>
+
+        <h2 class="mt-4">Conclusão</h2>
+        <p>
+            O Índice de Massa Corporal é uma ferramenta simples e prática para avaliação de peso corporal. No entanto, não deve ser usado como o único indicador de saúde. Uma avaliação abrangente deve incluir outras medidas, como circunferência da cintura, níveis de atividade física e fatores genéticos, para fornecer uma visão mais completa da saúde do indivíduo.
+        </p>
+
     </div>
+
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container text-center">
+            <p>Felipe Palmeira | Todos os direitos reservados. 2024</p>
+            <div class="d-flex justify-content-center">
+                <a target="_blank" href="https://github.com/felipedpaula" class="text-light mx-2" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a target="_blank" href="https://www.instagram.com/felipdpp/" class="text-light mx-2" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a target="_blank" href="https://www.linkedin.com/in/felipe-de-paula-palmeira-633a87142/" class="text-light mx-2" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
 
     <!-- Bootstrap 5 JavaScript Bundle com Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

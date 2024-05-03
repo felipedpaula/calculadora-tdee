@@ -12,9 +12,9 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white mb-3 border">
             <div class="container">
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" href="/calculadora-tdee">
                     <h1>Calculadora TDEE</h1>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,29 +23,100 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Início</a>
+                            <a class="nav-link active" aria-current="page" href="/calculadora-tdee">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/o-que-e-tdee.html">O que é TDEE</a>
+                            <a class="nav-link" href="/calculadora-tdee/o-que-e-tdee.html">O que é TDEE</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/o-que-e-imc.html">O que é IMC</a>
+                            <a class="nav-link" href="/calculadora-tdee/o-que-e-imc.html">O que é IMC</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="/calculadora-tdee/sobre.html">Sobre</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/sobre.html">Sobre</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/contato.html">Contato</a>
-                        </li>
+                            <a class="nav-link" href="/calculadora-tdee/contato.html">Contato</a>
+                        </li> -->
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
     
-    <div class="container py-4"> 
-        
+    <div class="container py-4 p-3 border rounded bg-white"> 
+        <h1>TDEE (Gasto Diário Total de Energia)</h1>
+
+        <h2 class="mt-4">O que é o TDEE?</h2>
+        <p>
+            <strong>TDEE</strong>, ou Gasto Diário Total de Energia, é a quantidade total de energia que uma pessoa gasta em um dia. Esse valor inclui todas as atividades diárias, como o trabalho, exercícios físicos e mesmo as funções corporais básicas, como a respiração e a digestão. Compreender o TDEE é crucial para quem deseja perder peso, ganhar massa muscular ou manter um estilo de vida saudável.
+        </p>
+
+        <h2 class="mt-4">Componentes do TDEE</h2>
+
+        <ul>
+            <li>
+                <strong>Taxa Metabólica Basal (TMB):</strong> É a quantidade de energia que o corpo precisa para realizar funções vitais, como a respiração e o funcionamento do coração. Ela é responsável por aproximadamente 60-70% do TDEE.
+            </li>
+            <li>
+                <strong>Efeito Térmico dos Alimentos (TEF):</strong> Representa a energia necessária para digerir, absorver e metabolizar os nutrientes dos alimentos. O TEF corresponde a cerca de 10% do TDEE.
+            </li>
+            <li>
+                <strong>Atividade Física:</strong> Isso inclui tanto o exercício planejado quanto as atividades do dia a dia, como andar, subir escadas ou até mesmo movimentos involuntários como mexer as pernas. A contribuição da atividade física para o TDEE pode variar amplamente, de 15% a 30% ou mais, dependendo do estilo de vida da pessoa.
+            </li>
+            <li>
+                <strong>Termogênese de Atividade Não-Exercício (NEAT):</strong> Envolve todas as outras atividades que não são exercícios estruturados, como gestos, postura e tarefas domésticas.
+            </li>
+        </ul>
+
+        <h2 class="mt-4">Como Calcular o TDEE</h2>
+        <p>
+            Para calcular o TDEE, é preciso primeiro determinar a Taxa Metabólica Basal (TMB). Uma das equações mais usadas para isso é a <strong>Mifflin-St Jeor Equation</strong>, que calcula a TMB com base na idade, peso, altura e sexo do indivíduo. A equação é a seguinte:
+        </p>
+        <div class="bg-light p-3 rounded">
+            <p><strong>Para homens:</strong> TMB = (10 × peso em kg) + (6.25 × altura em cm) - (5 × idade em anos) + 5</p>
+            <p><strong>Para mulheres:</strong> TMB = (10 × peso em kg) + (6.25 × altura em cm) - (5 × idade em anos) - 161</p>
+        </div>
+        <p>
+            Uma vez calculada a TMB, o TDEE pode ser estimado multiplicando-se a TMB por um fator de atividade, que varia com base nos níveis de atividade física:
+        </p>
+        <ul>
+            <li><strong>Sedentário</strong> (pouca ou nenhuma atividade física): TMB × 1.2</li>
+            <li><strong>Levemente ativo</strong> (exercício leve/sport 1-3 dias/semana): TMB × 1.375</li>
+            <li><strong>Moderadamente ativo</strong> (exercício moderado/sport 3-5 dias/semana): TMB × 1.55</li>
+            <li><strong>Altamente ativo</strong> (exercício intenso/sport 6-7 dias/semana): TMB × 1.725</li>
+            <li><strong>Extremamente ativo</strong> (atividade física muito intensa ou trabalho físico): TMB × 1.9</li>
+        </ul>
+
+        <h2 class="mt-4">Gasto Calórico e Alimentação Saudável</h2>
+        <p>
+            Entender o TDEE é essencial para planejar uma alimentação saudável. O consumo calórico diário deve ser ajustado ao TDEE para alcançar objetivos específicos. Por exemplo, para perder peso, é necessário consumir menos calorias do que o TDEE, criando um déficit calórico. Por outro lado, quem busca ganhar massa muscular deve consumir mais calorias do que o TDEE.
+        </p>
+        <p>
+            Alimentação saudável e exercício físico adequado são essenciais para manter um equilíbrio energético positivo e promover bem-estar. A escolha dos alimentos certos pode melhorar a qualidade da dieta, garantindo nutrientes suficientes enquanto controla a ingestão de calorias.
+        </p>
+
+        <h2 class="mt-4">Conclusão</h2>
+        <p>
+            Conhecer o TDEE ajuda a ajustar o consumo calórico de acordo com os objetivos de saúde e fitness. Ao usar o modelo da Equação de Mifflin-St Jeor, você pode obter uma estimativa precisa das necessidades energéticas diárias e otimizar seu plano alimentar para alcançar seus objetivos.
+        </p>
     </div>
+
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container text-center">
+            <p>Felipe Palmeira | Todos os direitos reservados. 2024</p>
+            <div class="d-flex justify-content-center">
+                <a target="_blank" href="https://github.com/felipedpaula" class="text-light mx-2" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a target="_blank" href="https://www.instagram.com/felipdpp/" class="text-light mx-2" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a target="_blank" href="https://www.linkedin.com/in/felipe-de-paula-palmeira-633a87142/" class="text-light mx-2" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
 
     <!-- Bootstrap 5 JavaScript Bundle com Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
