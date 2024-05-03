@@ -9,5 +9,22 @@
     border: 1px solid #f5c6cb;
     border-radius: 4px;
     padding: 10px;
-    margin-top: 10px;
+}
+.informacoes-uteis ul {
+    list-style: none;
+    padding-left: 0;
+}
+.informacoes-uteis li {
+    margin-bottom: 1rem;
+}
+.informacoes-uteis a {
+    font-weight: bold;
+    text-decoration: none;
+}
+.informacoes-uteis a:hover {
+    text-decoration: underline;
+}
+.informacoes-uteis p {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
 }

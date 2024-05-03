@@ -43,51 +43,71 @@
         </nav>
     </header>
     
-    <div class="container py-4">
-        <form class="mb-3">
-            <div class="mb-3">
-                <label for="genero" class="form-label">Gênero</label>
-                <select class="form-select" id="genero">
-                    <option value="1">Homem</option>
-                    <option value="0">Mulher</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="idade" class="form-label">Idade</label>
-                <input type="number" class="form-control" id="idade" placeholder="Digite sua idade">
-            </div>
-            <div class="mb-3">
-                <label for="peso" class="form-label">Peso (em kg)</label>
-                <input type="number" class="form-control" id="peso" placeholder="Digite seu peso">
-            </div>
-            <div class="mb-3">
-                <label for="altura" class="form-label">Altura (em cm)</label>
-                <input type="number" class="form-control" id="altura" placeholder="Digite sua altura">
-            </div>
-            <div class="mb-3">
-                <label for="atividade" class="form-label">Nível de Atividade</label>
-                <select class="form-select" id="atividade">
-                    <option value="1.2">Sedentário (pouco ou nenhum exercício)</option>
-                    <option value="1.375">Levemente ativo (exercício leve/esportes 1-3 dias por semana)</option>
-                    <option value="1.55">Moderadamente ativo (exercício moderado/esportes 3-5 dias por semana)</option>
-                    <option value="1.725">Muito ativo (exercício pesado/esportes 6-7 dias por semana)</option>
-                    <option value="1.9">Extremamente ativo (muito exercício pesado/esportes e trabalho físico ou treino 2x por dia)</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary">Calcular TDEE</button>
-        </form>
+    <div class="container py-3">
+        <div class="row">
+            <div class="col-12 col-lg-7 mb-2">
+                <!--  Mensagens de erro -->
+                <div id="mensagem-erro" class="alert-danger d-none mb-3"></div>
 
-        <!--  Mensagens de erro -->
-        <div id="mensagem-erro" class="alert-danger d-none"></div>
+                <form class="mb-3">
+                    <div class="mb-3">
+                        <label for="genero" class="form-label">Gênero</label>
+                        <select class="form-select" id="genero">
+                            <option value="1">Homem</option>
+                            <option value="0">Mulher</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="idade" class="form-label">Idade</label>
+                        <input type="number" class="form-control" id="idade" placeholder="Digite sua idade">
+                    </div>
+                    <div class="mb-3">
+                        <label for="peso" class="form-label">Peso (em kg)</label>
+                        <input type="number" class="form-control" id="peso" placeholder="Digite seu peso">
+                    </div>
+                    <div class="mb-3">
+                        <label for="altura" class="form-label">Altura (em cm)</label>
+                        <input type="number" class="form-control" id="altura" placeholder="Digite sua altura">
+                    </div>
+                    <div class="mb-3">
+                        <label for="atividade" class="form-label">Nível de Atividade</label>
+                        <select class="form-select" id="atividade">
+                            <option value="1.2">Sedentário (pouco ou nenhum exercício)</option>
+                            <option value="1.375">Levemente ativo (exercício leve/esportes 1-3 dias por semana)</option>
+                            <option value="1.55">Moderadamente ativo (exercício moderado/esportes 3-5 dias por semana)</option>
+                            <option value="1.725">Muito ativo (exercício pesado/esportes 6-7 dias por semana)</option>
+                            <option value="1.9">Extremamente ativo (muito exercício pesado/esportes e trabalho físico ou treino 2x por dia)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Calcular TDEE</button>
+                </form>
+            </div>
+            <div class="col-12 col-lg-5">
+                <!--  Informações úteis -->
+                <h5>Informações Úteis</h5>
+                <div class="my-2 p-3 border rounded bg-light informacoes-uteis">
+                    <ul class="mt-3">
+                        <li>
+                            <a href="/o-que-e-tdee.html">O que é TDEE?</a>
+                            <p id="tdee-info">TDEE (Total Daily Energy Expenditure ou Gasto Energético Diário Total) é uma estimativa de quantas calorias você queima diariamente levando em consideração o seu metabolismo basal e o nível de atividade física. Ele é fundamental para planejamento nutricional e de atividades físicas.</p>
+                        </li>
+                        <li>
+                            <a href="/o-que-e-imc.html">O que é IMC?</a>
+                            <p id="imc-info">IMC (Índice de Massa Corporal) é uma medida usada para avaliar se o seu peso está adequado em relação à sua altura. Ele é calculado dividindo o peso pela altura ao quadrado, fornecendo uma estimativa rápida do estado de peso de uma pessoa.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         
         <!-- RESULTADO IMC -->
-        <div id="resultado-imc" class="py-2"></div>
+        <div id="resultado-imc" class="d-none my-3 p-3 border rounded bg-light"></div>
         
         <!-- RESULTADO TDEE -->
-        <div id="resultado-tdee" class="py-2 mt-2"></div>
+        <div id="resultado-tdee" class="d-none my-3 p-3 border rounded bg-light"></div>
         
         <!-- RESULTADO DIETAS -->
-        <div id="resultado-categorias" class="py-4"></div>
+        <div id="resultado-categorias" class="d-none my-3 p-3 border rounded bg-light"></div>
         
     </div>
 
@@ -168,28 +188,49 @@
             let maintenanceCalories = TDEE; // Calorias para Manutenção
             let bulkingCalories = TDEE * 1.2; // Aumentar 20% para Bulking
 
-            // Mostrar resultados
-            document.getElementById('resultado-tdee').innerHTML = `
+            // Mostrar resultados do TDEE
+            let resultadoTDEE = document.getElementById('resultado-tdee');
+            resultadoTDEE.innerHTML = `
                 <h3>Seu TDEE é: ${TDEE.toFixed(2)} calorias por dia</h3>
                 <p>Este é o número estimado de calorias que você precisa consumir para manter o seu peso atual, considerando seu nível de atividade física.</p>
             `;
+            resultadoTDEE.classList.remove('d-none');
 
             // Mostrar resultados para Cutting, Manutenção e Bulking
-            document.getElementById('resultado-categorias').innerHTML = `
+            let resultadoCategorias = document.getElementById('resultado-categorias');
+            resultadoCategorias.innerHTML = `
                 <h3>Planejamento Calórico</h3>
-                <ul>
-                    <li><strong>Cutting:</strong> ${cuttingCalories.toFixed(2)} calorias por dia</li>
-                    <li><strong>Manutenção:</strong> ${maintenanceCalories.toFixed(2)} calorias por dia</li>
-                    <li><strong>Bulking:</strong> ${bulkingCalories.toFixed(2)} calorias por dia</li>
-                </ul>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Objetivo</th>
+                            <th>Calorias por dia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Cutting</strong></td>
+                            <td>${cuttingCalories.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Manutenção</strong></td>
+                            <td>${maintenanceCalories.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bulking</strong></td>
+                            <td>${bulkingCalories.toFixed(2)}</td>
+                        </tr>
+                    </tbody>
+                </table>
             `;
+            resultadoCategorias.classList.remove('d-none');
         });
 
         // -- FUNÇÃO PARA CALCULAR IMC
         document.querySelector('form').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // Validação dos campos
+            // Verificar campos antes de calcular TDEE e IMC
             if (!verificarCampos()) {
                 return; // Não prosseguir se algum campo estiver vazio
             }
@@ -198,27 +239,40 @@
             const peso = parseFloat(document.getElementById('peso').value);
             const alturaCm = parseFloat(document.getElementById('altura').value);
             const atividade = parseFloat(document.getElementById('atividade').value);
+            const genero = parseInt(document.getElementById('genero').value); // 1 para homens, 0 para mulheres
 
-            // Calculando TDEE usando a fórmula de Mifflin-St Jeor
-            let TMB = 10 * peso + 6.25 * alturaCm - 5 * idade + 5; // Assumindo sexo masculino, substitua +5 por -161 para feminino
+            // Calculando TMB usando a fórmula de Mifflin-St Jeor considerando o gênero
+            let TMB = 10 * peso + 6.25 * alturaCm - 5 * idade + (genero === 1 ? 5 : -161);
+
+            // Multiplica a TMB pelo fator de atividade física para obter o TDEE
             let TDEE = TMB * atividade;
+
+            // Calcular calorias para Cutting, Manutenção e Bulking
+            let cuttingCalories = TDEE * 0.8; // Reduzir 20% para Cutting
+            let maintenanceCalories = TDEE; // Calorias para Manutenção
+            let bulkingCalories = TDEE * 1.2; // Aumentar 20% para Bulking
+
+            // Mostrar resultados do TDEE
+            let resultadoTDEE = document.getElementById('resultado-tdee');
+            resultadoTDEE.innerHTML = `
+                <h3>Seu TDEE é: ${TDEE.toFixed(2)} calorias por dia</h3>
+                <p>Este é o número estimado de calorias que você precisa consumir para manter o seu peso atual, considerando seu nível de atividade física.</p>
+            `;
+            resultadoTDEE.classList.remove('d-none');
 
             // Calculando IMC
             const alturaMetros = alturaCm / 100; // Converter altura para metros
             const IMC = peso / (alturaMetros * alturaMetros);
             const classificacaoIMC = classificarIMC(IMC);
 
-            // Mostrar resultados
-            document.getElementById('resultado-tdee').innerHTML = `
-                <h3>Seu TDEE é: ${TDEE.toFixed(2)} calorias por dia</h3>
-                <p>Este é o número estimado de calorias que você precisa consumir para manter o seu peso atual, considerando seu nível de atividade física.</p>
-            `;
-
-            document.getElementById('resultado-imc').innerHTML = `
+            // Mostrar resultados para IMC
+            let resultadoIMC = document.getElementById('resultado-imc');
+            resultadoIMC.innerHTML = `
                 <h3>Seu IMC é: ${IMC.toFixed(2)}</h3>
                 <p>Classificação: ${classificacaoIMC}</p>
                 <p>O IMC (Índice de Massa Corporal) é uma medida usada para avaliar se o seu peso está adequado em relação à sua altura.</p>
             `;
+            resultadoIMC.classList.remove('d-none');
         });
     </script>
 </body>
