@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,27 +9,33 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="#">Calculadora TDEE</a>
+                <a class="navbar-brand" href="/">
+                    <h1>Calculadora TDEE</h1>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Início</a>
+                            <a class="nav-link active" aria-current="page" href="/">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Blog</a>
+                            <a class="nav-link" href="/o-que-e-tdee.html">O que é TDEE</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contato</a>
+                            <a class="nav-link" href="/o-que-e-imc.html">O que é IMC</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Sobre</a>
+                            <a class="nav-link" href="/sobre.html">Sobre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contato.html">Contato</a>
                         </li>
                     </ul>
                 </div>
@@ -36,9 +43,15 @@
         </nav>
     </header>
     
-    <div class="container py-5">
-        <h2>Calculadora TDEE</h2>
+    <div class="container py-4">
         <form>
+            <div class="mb-3">
+                <label for="genero" class="form-label">Gênero</label>
+                <select class="form-select" id="genero">
+                    <option value="1">Homem</option>
+                    <option value="0">Mulher</option>
+                </select>
+            </div>
             <div class="mb-3">
                 <label for="idade" class="form-label">Idade</label>
                 <input type="number" class="form-control" id="idade" placeholder="Digite sua idade">
@@ -67,11 +80,14 @@
         <!--  Mensagens de erro -->
         <div id="mensagem-erro" class="alert-danger d-none"></div>
         
+        <!-- RESULTADO IMC -->
+        <div id="resultado-imc" class="py-2"></div>
+        
         <!-- RESULTADO TDEE -->
         <div id="resultado-tdee" class="py-2 mt-2"></div>
         
-        <!-- RESULTADO IMC -->
-        <div id="resultado-imc" class="py-2"></div>
+        <!-- RESULTADO DIETAS -->
+        <div id="resultado-categorias" class="py-4"></div>
         
     </div>
 
@@ -82,6 +98,7 @@
 
         // -- FUNÇÃO DE VALIDAÇÃO
         function verificarCampos() {
+            const genero = document.getElementById('genero').value;
             const idade = document.getElementById('idade').value;
             const peso = document.getElementById('peso').value;
             const altura = document.getElementById('altura').value;
@@ -90,6 +107,7 @@
 
             let mensagens = [];
 
+            if (!genero) mensagens.push('Gênero');
             if (!idade) mensagens.push('Idade');
             if (!peso) mensagens.push('Peso');
             if (!altura) mensagens.push('Altura');
@@ -124,30 +142,46 @@
             }
         }
 
-        // -- FUNÇÃO PARA CALCULAR O TDEE
+        // -- FUNÇÃO PARA CALCULAR O TDEE (Mifflin-St Jeor)
         document.querySelector('form').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // Validação
+            // Validação dos campos
             if (!verificarCampos()) {
                 return; // Não prosseguir se algum campo estiver vazio
             }
-    
+
             const idade = parseInt(document.getElementById('idade').value, 10);
             const peso = parseFloat(document.getElementById('peso').value);
-            const altura = parseFloat(document.getElementById('altura').value);
+            const alturaCm = parseFloat(document.getElementById('altura').value);
             const atividade = parseFloat(document.getElementById('atividade').value);
-    
-            // A fórmula de Mifflin-St Jeor assume gênero masculino por padrão. Você pode adicionar um campo para o gênero para uma melhor precisão.
-            let TMB = 10 * peso + 6.25 * altura - 5 * idade + 5; // Para homens, substitua +5 por -161 para mulheres
-    
+            const genero = parseInt(document.getElementById('genero').value); // 1 para homens, 0 para mulheres
+
+            // Calculando TMB usando a fórmula de Mifflin-St Jeor considerando o gênero
+            let TMB = 10 * peso + 6.25 * alturaCm - 5 * idade + (genero === 1 ? 5 : -161);
+
             // Multiplica a TMB pelo fator de atividade física para obter o TDEE
             let TDEE = TMB * atividade;
-    
-            // Atualiza a seção de resultados com o TDEE calculado
+
+            // Calcular calorias para Cutting, Manutenção e Bulking
+            let cuttingCalories = TDEE * 0.8; // Reduzir 20% para Cutting
+            let maintenanceCalories = TDEE; // Calorias para Manutenção
+            let bulkingCalories = TDEE * 1.2; // Aumentar 20% para Bulking
+
+            // Mostrar resultados
             document.getElementById('resultado-tdee').innerHTML = `
                 <h3>Seu TDEE é: ${TDEE.toFixed(2)} calorias por dia</h3>
                 <p>Este é o número estimado de calorias que você precisa consumir para manter o seu peso atual, considerando seu nível de atividade física.</p>
+            `;
+
+            // Mostrar resultados para Cutting, Manutenção e Bulking
+            document.getElementById('resultado-categorias').innerHTML = `
+                <h3>Planejamento Calórico</h3>
+                <ul>
+                    <li><strong>Cutting:</strong> ${cuttingCalories.toFixed(2)} calorias por dia</li>
+                    <li><strong>Manutenção:</strong> ${maintenanceCalories.toFixed(2)} calorias por dia</li>
+                    <li><strong>Bulking:</strong> ${bulkingCalories.toFixed(2)} calorias por dia</li>
+                </ul>
             `;
         });
 
@@ -155,7 +189,7 @@
         document.querySelector('form').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            // Validação
+            // Validação dos campos
             if (!verificarCampos()) {
                 return; // Não prosseguir se algum campo estiver vazio
             }
